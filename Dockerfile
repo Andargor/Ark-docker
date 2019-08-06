@@ -36,6 +36,8 @@ ENV GID 1000
 RUN apt-get update &&\ 
     apt-get install -y curl lib32gcc1 lsof git
 
+RUN apt-get -y -o Dpkg::Options::="--force-confmiss" install --reinstall sudo
+
 # Enable passwordless sudo for users under the "sudo" group
 RUN sed -i.bkp -e \
 	's/%sudo\s\+ALL=(ALL\(:ALL\)\?)\s\+ALL/%sudo ALL=NOPASSWD:ALL/g' /etc/sudoers \
